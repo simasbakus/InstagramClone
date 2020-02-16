@@ -8,7 +8,14 @@
                     {{-- @if (session('status'))
                     @endif --}}
                     <div class="row">
-                      <img src="{{ asset('storage/uploads/' . Auth::user()->profilePic) }}" alt="" style="width:150px; height:150px">
+                        <img class="" src="{{ asset('storage/uploads/' . Auth::user()->profilePic) }}" alt="" style="width:150px; height:150px">
+                      <div class="col">
+                      </div>
+                    </div>
+                    <div class="row my-2">
+
+                        <a href="uploadPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+
                     </div>
 
         </div>
