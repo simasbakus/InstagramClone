@@ -8,7 +8,7 @@
 
           <h1>Upload New Photo</h1>
 
-          <form class="py-4" action="uploadPhoto/store" method="post" enctype="multipart/form-data">
+          <form class="py-4" action="/home" method="post" enctype="multipart/form-data">
               <div class="form-group d-flex flex-column">
                 <label for="photo">Choose Photo</label>
                 <input type="file" name="photo" value="">

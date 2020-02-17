@@ -39,7 +39,17 @@ class UserPhotosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+          'photo' => 'required|file|image|max:5000',
+          'caption' => 'max:255',
+        ]);
+
+        $photo = new UserPhoto($data);
+        $photo->userId = auth()->user()->id;
+        $photo->photo = request()->photo->store('uploads', 'public');
+        $photo->save();
+        
+        return redirect('/home');
     }
 
     /**

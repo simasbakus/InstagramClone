@@ -17,7 +17,7 @@ class CreateUserPhotosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('userId');
             $table->string('photo');
-            $table->string('caption');
+            $table->string('caption')->nullable();
             $table->timestamps();
         });
     }

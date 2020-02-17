@@ -17,6 +17,11 @@
                         <a href="uploadPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
 
                     </div>
+                    <div class="row">
+                      @foreach ($userPhotos as $userPhoto)
+                        <img src="{{ asset('storage/' . $userPhoto->photo) }}" alt="">
+                      @endforeach
+                    </div>
 
         </div>
     </div>

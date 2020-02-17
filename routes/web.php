@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'UserPhotosController@index')->name('home');
 
 Route::get('uploadPhoto/create', 'UserPhotosController@create');
 
-Route::get('uploadPhoto/store', 'UserPhotosController@store');
+Route::post('/home', 'UserPhotosController@store');
