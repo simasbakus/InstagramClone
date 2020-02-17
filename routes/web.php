@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'UserPhotosController@index')->name('home');
+Route::get('/home', 'UserPhotosController@index')->name('home')->middleware('auth');
 
-Route::get('uploadPhoto/create', 'UserPhotosController@create');
+Route::get('userPhoto/create', 'UserPhotosController@create')->middleware('auth');
 
-Route::post('/home', 'UserPhotosController@store');
+Route::post('/home', 'UserPhotosController@store')->middleware('auth');
+
+Route::get('userPhoto/{userPhoto}', 'UserPhotosController@show')->middleware('auth');

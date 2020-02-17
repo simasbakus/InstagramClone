@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\UserPhoto;
-use Intervention\Image\Facades\Image;
 
-class UserPhotosController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class UserPhotosController extends Controller
      */
     public function index()
     {
-        $userPhotos = UserPhoto::orderBy('id', 'DESC')
-              ->where('userId', auth()->user()->id)
-              ->get();
-
-        return view('home', compact('userPhotos'));
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class UserPhotosController extends Controller
      */
     public function create()
     {
-        return view('uploadPhoto');
+        //
     }
 
     /**
@@ -40,17 +34,7 @@ class UserPhotosController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-          'photo' => 'required|file|image|max:5000',
-          'caption' => 'max:255',
-        ]);
-
-        $photo = new UserPhoto($data);
-        $photo->userId = auth()->user()->id;
-        $photo->photo = request()->photo->store('uploads', 'public');
-        $photo->save();
-
-        return redirect('/home');
+        //
     }
 
     /**
@@ -59,12 +43,9 @@ class UserPhotosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($userPhoto)
+    public function show($id)
     {
-        $photo = UserPhoto::find($userPhoto);
-
-        return view('showPhoto', compact('photo'));
-
+        //
     }
 
     /**
