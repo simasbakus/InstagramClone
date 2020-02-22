@@ -104,13 +104,9 @@ class UserPhotosController extends Controller
     public function destroy($userPhoto)
     {
         $photo = UserPhoto::findOrFail($userPhoto);
-        if(File::exists("/storage/$photo->photo")) {
-            dd('rado');
-        } else {
-          dd('nerado');
-        };
-        // $photo->delete();
-        // return redirect('/');
+        File::delete("/storage/$photo->photo");
+        $photo->delete();
+        return redirect('/');
     }
 
     public function validation()
