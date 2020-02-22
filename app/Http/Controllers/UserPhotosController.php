@@ -40,12 +40,9 @@ class UserPhotosController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-          'photo' => 'required|file|image|max:5000',
-          'caption' => 'max:255',
-        ]);
 
-        $photo = new UserPhoto($data);
+
+        $photo = new UserPhoto($this->validation());
         $photo->userId = auth()->user()->id;
         $photo->photo = request()->photo->store('uploads', 'public');
         $photo->save();
@@ -73,9 +70,10 @@ class UserPhotosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($userPhoto)
     {
-        //
+        $photo = UserPhoto::findOrFail($userPhoto);
+        return view('editPhoto', compact('photo'));
     }
 
     /**
@@ -85,9 +83,15 @@ class UserPhotosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $userPhoto)
     {
-        //
+        $photo = UserPhoto::findOrFail($userPhoto);
+        $data = request()->validate([
+          'caption' => 'max:255',
+        ]);
+        $photo->caption = $data['caption'];
+        $photo->save();
+        return redirect('/');
     }
 
     /**
@@ -99,5 +103,13 @@ class UserPhotosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function validation()
+    {
+      return request()->validate([
+        'photo' => 'required|file|image|max:5000',
+        'caption' => 'max:255',
+      ]);
     }
 }

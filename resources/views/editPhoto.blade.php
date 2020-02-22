@@ -10,16 +10,13 @@
                               <div class="card-img-top">
                                 <img src="{{ asset('storage/' . $photo->photo) }}" alt="">
                               </div>
-                              <div class="card-text px-2 py-1">
-                                <p>{{ $photo->caption }}</p>
-                              </div>
+                              <form class="card-text px-2 py-1" action="/userPhoto/{{ $photo->id }}" method="post">
+                                @method('PATCH')
+                                <input type="text" name="caption" value="{{ $photo->caption ?? null }}" class="caption-edit">
+                                <button type="submit" name="button" class="btn btn-primary">Save</button>
+                                @csrf
+                              </form>
                           </div>
-                    </div>
-                    <div class="row">
-                      <a href="/userPhoto/{{ $photo->id }}/edit" class="btn btn-primary">Edit Caption</a>
-                    </div>
-                    <div class="row">
-                      <a href="/userPhoto/{userPhoto}" class="btn btn-danger">Delete</a>
                     </div>
 
         </div>
