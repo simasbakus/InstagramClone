@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserPhoto;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class UserPhotosController extends Controller
 {
@@ -100,9 +101,16 @@ class UserPhotosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($userPhoto)
     {
-        //
+        $photo = UserPhoto::findOrFail($userPhoto);
+        if(File::exists("/storage/$photo->photo")) {
+            dd('rado');
+        } else {
+          dd('nerado');
+        };
+        // $photo->delete();
+        // return redirect('/');
     }
 
     public function validation()
