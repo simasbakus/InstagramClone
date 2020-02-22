@@ -10,8 +10,9 @@
 
           <form class="py-4" action="/home" method="post" enctype="multipart/form-data">
               <div class="form-group d-flex flex-column">
-                <label for="photo">Choose Photo</label>
-                <input type="file" name="photo" value="">
+                <label for="choose-photo">Photo Preview</label>
+                <img src="" alt="" class="choose-photo" style="height:100%; width:100%; display:none">
+                <input type="file" name="photo" onchange="displayImage(this); displayIMG()" value="" class="photo">
                 <div>
                   {{ $errors->first('photo') }}
                 </div>
