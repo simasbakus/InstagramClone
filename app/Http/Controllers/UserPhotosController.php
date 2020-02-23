@@ -16,11 +16,7 @@ class UserPhotosController extends Controller
      */
     public function index()
     {
-        $userPhotos = UserPhoto::orderBy('id', 'DESC')
-              ->where('userId', auth()->user()->id)
-              ->get();
-
-        return view('home', compact('userPhotos'));
+        
     }
 
     /**

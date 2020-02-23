@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', 'UserPhotosController@index')->name('home')->middleware('auth');
+Route::get('/', 'UsersController@index')->name('home')->middleware('auth');
 
-Route::get('/home', 'UserPhotosController@index')->name('home')->middleware('auth');
+Route::get('/home', 'UsersController@index')->name('home')->middleware('auth');
+
+
 
 Route::get('userPhoto/create', 'UserPhotosController@create')->middleware('auth');
 

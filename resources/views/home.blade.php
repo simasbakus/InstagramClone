@@ -6,7 +6,7 @@
         <div class="col-md-8">
 
                     <div class="row">
-                        <img class="" src="{{ asset('storage/uploads/' . Auth::user()->profilePic) }}" alt="" style="width:150px; height:150px">
+                        <img class="" src="{{ asset('storage/uploads/' . $user->profilePic) }}" alt="" style="width:150px; height:150px">
                       <div class="col">
                       </div>
                     </div>

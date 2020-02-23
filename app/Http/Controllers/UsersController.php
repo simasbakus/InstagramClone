@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\UserPhoto;
 
 class UsersController extends Controller
 {
@@ -13,7 +15,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+      $user = User::findOrFail(auth()->user()->id);
+      $userPhotos = UserPhoto::orderBy('id', 'DESC')
+            ->where('userId', auth()->user()->id)
+            ->get();
+
+      return view('home', compact('userPhotos', 'user'));
     }
 
     /**
