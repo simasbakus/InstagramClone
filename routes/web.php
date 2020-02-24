@@ -17,9 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', 'UsersController@index')->name('home')->middleware('auth');
+Route::get('/', 'UsersController@logedInUser')->name('home')->middleware('auth');
 
-Route::get('/home', 'UsersController@index')->name('home')->middleware('auth');
+Route::get('/home', 'UsersController@logedInUser')->name('home')->middleware('auth');
+
+Route::get('/users', 'UsersController@index')->middleware('auth');
+
+Route::get('/user/{user}', 'UsersController@show')->middleware('auth');
 
 
 

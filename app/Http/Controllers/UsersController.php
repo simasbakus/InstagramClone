@@ -15,7 +15,14 @@ class UsersController extends Controller
      */
     public function index()
     {
+      $users = User::all();
+      return view('allUsers', compact('users'));
+    }
+
+    public function logedInUser()
+    {
       $user = User::findOrFail(auth()->user()->id);
+      //reiktu iskviest userPhotos controllerio index funkcija kuri grazintu visas fotkes
       $userPhotos = UserPhoto::orderBy('id', 'DESC')
             ->where('userId', auth()->user()->id)
             ->get();
@@ -50,9 +57,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
     {
-        //
+        $user = User::findOrFail($user);
+        return view('user', compact('user'));
     }
 
     /**
