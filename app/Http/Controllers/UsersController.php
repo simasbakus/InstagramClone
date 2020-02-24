@@ -22,10 +22,7 @@ class UsersController extends Controller
     public function logedInUser()
     {
       $user = User::findOrFail(auth()->user()->id);
-      //reiktu iskviest userPhotos controllerio index funkcija kuri grazintu visas fotkes
-      $userPhotos = UserPhoto::orderBy('id', 'DESC')
-            ->where('userId', auth()->user()->id)
-            ->get();
+      $userPhotos = app('App\Http\Controllers\UserPhotosController')->index(auth()->user()->id);
 
       return view('home', compact('userPhotos', 'user'));
     }

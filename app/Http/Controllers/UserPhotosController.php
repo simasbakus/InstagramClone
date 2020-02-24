@@ -14,9 +14,12 @@ class UserPhotosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        
+      return UserPhoto::orderBy('id', 'DESC')
+            ->where('userId', $id)
+            ->get();
+
     }
 
     /**
