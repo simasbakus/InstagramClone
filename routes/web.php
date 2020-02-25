@@ -38,3 +38,7 @@ Route::get('/userPhoto/{userPhoto}/edit', 'UserPhotosController@edit')->middlewa
 Route::patch('/userPhoto/{userPhoto}', 'UserPhotosController@update')->middleware('auth');
 
 Route::delete('/userPhoto/{userPhoto}', 'UserPhotosController@destroy')->middleware('auth');
+
+
+
+Route::post('/follow/{id}', 'FollowersController@store')->middleware('auth');

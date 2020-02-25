@@ -41,7 +41,6 @@ class UserPhotosController extends Controller
     public function store(Request $request)
     {
 
-
         $photo = new UserPhoto($this->validation());
         $photo->userId = auth()->user()->id;
         $photo->photo = request()->photo->store('uploads', 'public');

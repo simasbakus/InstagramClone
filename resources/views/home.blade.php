@@ -7,18 +7,24 @@
 
                     <div class="row">
                         <img class="" src="{{ asset('storage/uploads/' . $user->profilePic) }}" alt="" style="width:150px; height:150px">
-                      <div class="col">
+                      <div class="col d-flex justify-content-end">
+                        <h2 class="mr-4">{{ $user->username }}</h2>
                       </div>
                     </div>
-                    <div class="row my-4">
+
 
                         @if ($user->id == auth()->user()->id)
-                          <a href="userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+                          <div class="row my-4">
+                            <a href="userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+                          </div>
                         @else
-                          <a href="#" class="col-12 btn btn-primary">Follow</a>
+                          <form class="row my-4" action="/follow/{{ $user->id }}" method="post">
+                            @csrf
+                            <button type="submit" name="follow" class="col-12 row btn btn-primary">Follow</button>
+                          </form>
                         @endif
 
-                    </div>
+
                     <div class="row pl-3">
                       @foreach ($userPhotos as $userPhoto)
                         <a href="/userPhoto/{{ $userPhoto->id }}">

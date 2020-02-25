@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Follower;
 
 class FollowersController extends Controller
 {
@@ -32,9 +33,24 @@ class FollowersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $doesExist = Follower::where('whoFollowsId', auth()->user()->id)
+                              ->where('whoIsFollowedId', $id)
+                              ->first();
+        if ($doesExist == true) {
+          $this->destroy($doesExist->id);
+          return redirect("/user/$id");
+        } else {
+          $follow = new Follower();
+          $follow->whoFollowsId = auth()->user()->id;
+          $follow->whoIsFollowedId = $id;
+          $follow->save();
+
+          return redirect("/user/$id");
+        };
+
+
     }
 
     /**
@@ -79,6 +95,6 @@ class FollowersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Follower::findOrFail($id)->delete();
     }
 }
