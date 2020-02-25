@@ -22,7 +22,7 @@ class UsersController extends Controller
 
     public function logedInUser()
     {
-      return $this->show(auth()->user()->id);
+      return redirect('/user/' . auth()->user()->id);
     }
 
     /**
@@ -56,7 +56,8 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($user);
         $userPhotos = app('App\Http\Controllers\UserPhotosController')->index($user->id);
-        return view('home', compact('userPhotos', 'user'));
+        $followers = app('App\Http\Controllers\FollowersController')->index($user->id);
+        return view('home', compact('userPhotos', 'user', 'followers'));
     }
 
     /**

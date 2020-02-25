@@ -12,9 +12,9 @@ class FollowersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return Follower::where('whoIsFollowedId', $id)->get();
     }
 
     /**

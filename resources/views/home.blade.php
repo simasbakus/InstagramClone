@@ -6,9 +6,10 @@
         <div class="col-md-8">
 
                     <div class="row">
-                        <img class="" src="{{ asset('storage/uploads/' . $user->profilePic) }}" alt="" style="width:150px; height:150px">
-                      <div class="col d-flex justify-content-end">
-                        <h2 class="mr-4">{{ $user->username }}</h2>
+                      <img class="col-3" src="{{ asset('storage/uploads/' . $user->profilePic) }}" alt="" style="width:150px; height:150px; border-radius:50%">
+                      <div class="col-9 d-flex flex-column align-items-end">
+                          <h2 class="mr-2 mb-2 row">{{ $user->username }}</h2>
+                          <h4 class="mr-2 my-2 row">Followers: {{ count($followers) }}</h4>
                       </div>
                     </div>
 
