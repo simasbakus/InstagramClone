@@ -21,7 +21,12 @@
                         @else
                           <form class="row my-4" action="/follow/{{ $user->id }}" method="post">
                             @csrf
-                            <button type="submit" name="follow" class="col-12 row btn btn-primary">Follow</button>
+                            @if ($followCheck == true)
+                              <button type="submit" name="follow" class="col-12 row btn btn-secondary">Unfollow</button>
+                            @else
+                              <button type="submit" name="follow" class="col-12 row btn btn-primary">Follow</button>
+                            @endif
+
                           </form>
                         @endif
 

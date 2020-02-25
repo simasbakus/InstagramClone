@@ -57,7 +57,9 @@ class UsersController extends Controller
         $user = User::findOrFail($user);
         $userPhotos = app('App\Http\Controllers\UserPhotosController')->index($user->id);
         $followers = app('App\Http\Controllers\FollowersController')->index($user->id);
-        return view('home', compact('userPhotos', 'user', 'followers'));
+        $followCheck = app('App\Http\Controllers\FollowersController')->isFollowed($user->id);
+
+        return view('home', compact('userPhotos', 'user', 'followers', 'followCheck'));
     }
 
     /**

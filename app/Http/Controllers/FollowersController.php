@@ -17,6 +17,19 @@ class FollowersController extends Controller
         return Follower::where('whoIsFollowedId', $id)->get();
     }
 
+    public function isFollowed($id)
+    {
+        $isFollowed = Follower::where('whoIsFollowedId', $id)
+                        ->where('whoFollowsId', auth()->user()->id)
+                        ->first();
+
+        if ($isFollowed == true) {
+          return true;
+        } else {
+          return false;
+        };
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,15 +53,14 @@ class FollowersController extends Controller
                               ->first();
         if ($doesExist == true) {
           $this->destroy($doesExist->id);
-          return redirect("/user/$id");
         } else {
           $follow = new Follower();
           $follow->whoFollowsId = auth()->user()->id;
           $follow->whoIsFollowedId = $id;
           $follow->save();
-
-          return redirect("/user/$id");
         };
+
+        return redirect("/user/$id");
 
 
     }
