@@ -15,14 +15,16 @@
                               </div>
                           </div>
                     </div>
-                    <div class="row my-2">
-                      <a href="/userPhoto/{{ $photo->id }}/edit" class="btn btn-primary">Edit Caption</a>
-                    </div>
-                    <form class="row" action="/userPhoto/{{ $photo->id }}" method="post">
-                      @method('DELETE')
-                      <button type="submit" name="button" class="btn btn-danger">Delete</button>
-                      @csrf
-                    </form>
+                    @if ($photo->userId == auth()->user()->id)
+                      <div class="row my-2">
+                        <a href="/userPhoto/{{ $photo->id }}/edit" class="btn btn-primary">Edit Caption</a>
+                      </div>
+                      <form class="row" action="/userPhoto/{{ $photo->id }}" method="post">
+                        @method('DELETE')
+                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
+                        @csrf
+                      </form>
+                    @endif
 
         </div>
     </div>

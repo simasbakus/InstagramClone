@@ -31,7 +31,7 @@ Route::get('userPhoto/create', 'UserPhotosController@create')->middleware('auth'
 
 Route::post('/home', 'UserPhotosController@store')->middleware('auth');
 
-Route::get('userPhoto/{userPhoto}', 'UserPhotosController@show')->middleware('auth');
+Route::get('/userPhoto/{userPhoto}', 'UserPhotosController@show')->middleware('auth');
 
 Route::get('/userPhoto/{userPhoto}/edit', 'UserPhotosController@edit')->middleware('auth');
 

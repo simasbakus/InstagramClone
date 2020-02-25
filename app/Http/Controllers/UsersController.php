@@ -19,12 +19,10 @@ class UsersController extends Controller
       return view('allUsers', compact('users'));
     }
 
+
     public function logedInUser()
     {
-      $user = User::findOrFail(auth()->user()->id);
-      $userPhotos = app('App\Http\Controllers\UserPhotosController')->index(auth()->user()->id);
-
-      return view('home', compact('userPhotos', 'user'));
+      return $this->show(auth()->user()->id);
     }
 
     /**
@@ -57,7 +55,8 @@ class UsersController extends Controller
     public function show($user)
     {
         $user = User::findOrFail($user);
-        return view('user', compact('user'));
+        $userPhotos = app('App\Http\Controllers\UserPhotosController')->index($user->id);
+        return view('home', compact('userPhotos', 'user'));
     }
 
     /**

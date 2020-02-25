@@ -12,12 +12,16 @@
                     </div>
                     <div class="row my-4">
 
-                        <a href="userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+                        @if ($user->id == auth()->user()->id)
+                          <a href="userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+                        @else
+                          <a href="#" class="col-12 btn btn-primary">Follow</a>
+                        @endif
 
                     </div>
                     <div class="row pl-3">
                       @foreach ($userPhotos as $userPhoto)
-                        <a href="userPhoto/{{ $userPhoto->id }}">
+                        <a href="/userPhoto/{{ $userPhoto->id }}">
                           <div class="card">
                               <div class="card-img-top">
                                 <img src="{{ asset('storage/' . $userPhoto->photo) }}" alt="" style="heigth:150px; width:150px">
