@@ -9,25 +9,24 @@
                       <img class="col-3" src="{{ asset('storage/uploads/' . $user->profilePic) }}" alt="" style="width:150px; height:150px; border-radius:50%">
                       <div class="col-9 d-flex flex-column align-items-end">
                           <h2 class="mr-2 mb-2 row">{{ $user->username }}</h2>
-                          <h4 class="mr-2 my-2 row">Followers: {{ count($followers) }}</h4>
+                          <div class="row">
+                            <h4 class="col my-2">Followers: </h4>
+                            <h4 class="mr-2 my-2 col" id="follower-count">{{ count($followers) }}</h4>
+                          </div>
                       </div>
                     </div>
 
 
                         @if ($user->id == auth()->user()->id)
                           <div class="row my-4">
-                            <a href="userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
+                            <a href="/userPhoto/create" class="col-12 btn btn-primary">Upload New Photo</a>
                           </div>
                         @else
-                          <form class="row my-4" action="/follow/{{ $user->id }}" method="post">
-                            @csrf
                             @if ($followCheck == true)
-                              <button type="submit" name="follow" class="col-12 row btn btn-secondary">Unfollow</button>
+                              <button type="button" id="follow-btn" userID="{{ $user->id }}" name="follow" class="col-12 row btn btn-secondary my-2">Unfollow</button>
                             @else
-                              <button type="submit" name="follow" class="col-12 row btn btn-primary">Follow</button>
+                              <button type="button" id="follow-btn" userID="{{ $user->id }}" name="follow" class="col-12 row btn btn-primary my-2">Follow</button>
                             @endif
-
-                          </form>
                         @endif
 
 

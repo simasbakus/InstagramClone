@@ -27,7 +27,7 @@ Route::get('/user/{user}', 'UsersController@show')->middleware('auth');
 
 
 
-Route::get('userPhoto/create', 'UserPhotosController@create')->middleware('auth');
+Route::get('/userPhoto/create', 'UserPhotosController@create')->middleware('auth');
 
 Route::post('/home', 'UserPhotosController@store')->middleware('auth');
 
@@ -41,4 +41,4 @@ Route::delete('/userPhoto/{userPhoto}', 'UserPhotosController@destroy')->middlew
 
 
 
-Route::post('/follow/{id}', 'FollowersController@store')->middleware('auth');
+Route::post('/follow', 'FollowersController@store')->middleware('auth');

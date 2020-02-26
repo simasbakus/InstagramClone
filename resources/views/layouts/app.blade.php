@@ -90,5 +90,37 @@
   function displayIMG() {
       $('.choose-photo').show();
   };
+
+
+  $('#follow-btn').on('click', function() {
+    if ($('#follow-btn').hasClass('btn-secondary')) {
+      $('#follow-btn').removeClass('btn-secondary').addClass('btn-primary');
+      $('#follow-btn').html('Follow');
+      let x = $('#follower-count').html();
+      x--;
+      $('#follower-count').html(x);
+    } else {
+      $('#follow-btn').removeClass('btn-primary').addClass('btn-secondary');
+      $('#follow-btn').html('Unfollow');
+      let x = $('#follower-count').html();
+      x++;
+      $('#follower-count').html(x);
+    };
+    let id = $(this).attr('userID');
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: '/follow',
+      data: {id: id},
+      success: function(gryzo) {
+        // console.log('suveike');
+      },
+      error: function(e) {
+        // console.log('nesuveike');
+      }
+    });
+
+  });
+
 </script>
 </html>

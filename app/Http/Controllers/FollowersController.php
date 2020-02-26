@@ -46,8 +46,9 @@ class FollowersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store()
     {
+        $id = $_POST['id'];
         $doesExist = Follower::where('whoFollowsId', auth()->user()->id)
                               ->where('whoIsFollowedId', $id)
                               ->first();
@@ -60,7 +61,7 @@ class FollowersController extends Controller
           $follow->save();
         };
 
-        return redirect("/user/$id");
+        return;
 
 
     }
