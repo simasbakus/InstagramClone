@@ -10,7 +10,7 @@
                       <div class="col-9 d-flex flex-column align-items-end">
                           <h2 class="mr-2 mb-2 row">{{ $user->username }}</h2>
                           <div class="row">
-                            <h4 class="col my-2">Followers: </h4>
+                            <h4 class="col my-2">Followers:</h4>
                             <h4 class="mr-2 my-2 col" id="follower-count">{{ count($followers) }}</h4>
                           </div>
                       </div>

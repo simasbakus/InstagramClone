@@ -41,4 +41,4 @@ Route::delete('/userPhoto/{userPhoto}', 'UserPhotosController@destroy')->middlew
 
 
 
-Route::post('/follow', 'FollowersController@store')->middleware('auth');
+Route::post('/follow', 'FollowersController@ajaxStore')->middleware('auth');

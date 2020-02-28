@@ -46,7 +46,7 @@ class FollowersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function ajaxStore()
     {
         $id = $_POST['id'];
         $doesExist = Follower::where('whoFollowsId', auth()->user()->id)
